@@ -270,11 +270,15 @@ impl pallet_sudo::Config for Runtime {
 }
 
 /// Configure the pallet-template in pallets/template.
-impl pallet_template::Config for Runtime {
-	type RuntimeEvent = RuntimeEvent;
-}
+/// Pallet related logic:
 
 use sp_runtime::traits;
+use frame_system::offchain::AppCrypto;
+
+impl pallet_template::Config for Runtime {
+	type RuntimeEvent = RuntimeEvent;
+	// type AuthorityId = pallet_template::crypto::TestAuthId;
+}
 
 impl frame_system::offchain::SigningTypes for Runtime {
     type Public = <Signature as traits::Verify>::Signer;

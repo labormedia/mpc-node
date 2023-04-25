@@ -21,10 +21,20 @@ frame-benchmarking = { version = "4.0.0-dev", default-features = false, optional
 frame-support = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.40" }
 frame-system = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.40" }
 
+#risc0-build          = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git" }
+#risc0-build-kernel   = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git" }
+#risc0-circuit-rv32im = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git" }
+#risc0-circuit-rv32im-sys = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git" }
+#risc0-core           = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git" }
+#risc0-sys            = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git" }
+#risc0-zkp            = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git" }
+risc0-zkvm           = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git" }
+#risc0-zkvm-platform  = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git" }
+
 [dev-dependencies]
-sp-core = { version = "7.0.0", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.40" }
+#sp-core = { version = "7.0.0", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.40" }
 sp-io = { version = "7.0.0", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.40" }
-sp-runtime = { version = "7.0.0", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.40" }
+#sp-runtime = { version = "7.0.0", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.40" }
 
 [features]
 default = ["std"]
@@ -34,6 +44,21 @@ std = [
 	"frame-support/std",
 	"frame-system/std",
 	"scale-info/std",
+	"risc0-zkvm/std"
 ]
 runtime-benchmarks = ["frame-benchmarking/runtime-benchmarks"]
 try-runtime = ["frame-support/try-runtime"]
+
+# Always optimize; building and running the guest takes much longer without optimization.
+[profile.dev]
+opt-level = 3
+
+[profile.dev.build-override]
+opt-level = 3
+
+[profile.release]
+debug = 1
+lto = true
+
+[profile.release.build-override]
+opt-level = 3

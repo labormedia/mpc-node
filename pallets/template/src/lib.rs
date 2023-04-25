@@ -29,6 +29,27 @@ pub mod pallet {
 	pub trait Config: CreateSignedTransaction<Call<Self>> + frame_system::Config {
 		/// Because this pallet emits events, it depends on the runtime's definition of an event.
 		type RuntimeEvent: From<Event<Self>> + IsType<<Self as frame_system::Config>::RuntimeEvent>;
+		// type AuthorityId: AppCrypto<Self::Public, Self::Signature>;
+	}
+
+	pub mod crypto {
+		// use super::KEY_TYPE;
+		// use sp_core::sr25519::Signature as Sr25519Signature;
+		// use sp_keyring;
+		// use sp_runtime::{
+		// 	app_crypto::{app_crypto, sr25519},
+		// 	traits::Verify, MultiSignature, MultiSigner
+		// };
+		// app_crypto!(sr25519, KEY_TYPE);
+
+		use risc0_zkvm::{
+			serde::{from_slice, to_vec},
+			// Executor, 
+			// ExecutorEnv
+		};
+	
+		pub struct TestAuthId;
+
 	}
 
 	// The pallet's runtime storage items.
