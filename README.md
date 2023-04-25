@@ -159,3 +159,10 @@ To get all the correct dependencies, activate direnv `direnv allow` and lorri `l
 ### Docker
 
 Please follow the [Substrate Docker instructions here](https://github.com/paritytech/substrate/blob/master/docker/README.md) to build the Docker container with the Substrate Node Template binary.
+
+
+notes: 
+  - export LIBRARY_PATH=/usr/lib/$(gcc -print-multiarch)
+  - export C_INCLUDE_PATH=/usr/include/$(gcc -print-multiarch)
+  - export CPLUS_INCLUDE_PATH=/usr/include/$(gcc -print-multiarch)
+  - sudo apt-get --reinstall install libc6 libc6-dev
