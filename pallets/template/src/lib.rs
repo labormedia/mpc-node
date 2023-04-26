@@ -14,6 +14,8 @@ mod tests;
 #[cfg(feature = "runtime-benchmarks")]
 mod benchmarking;
 
+mod methods;
+
 #[frame_support::pallet]
 pub mod pallet {
 	use frame_support::pallet_prelude::*;
@@ -42,11 +44,19 @@ pub mod pallet {
 		// };
 		// app_crypto!(sr25519, KEY_TYPE);
 
-		use risc0_zkvm::{
-			serde::{from_slice, to_vec},
-			// Executor, 
-			// ExecutorEnv
+		use risc0_zkp::core::hash::{
+			blake2b::{Blake2b, Blake2bHashFn},
+			poseidon::PoseidonHashFn,
+			sha::{Sha256, Sha256HashFn},
 		};
+
+		pub use crate::methods::{METHOD_NAME_ELF, METHOD_NAME_ID};
+
+		// use risc0_zkvm::{
+		// 	serde::{from_slice, to_vec},
+		// 	// Executor, 
+		// 	// ExecutorEnv
+		// };
 	
 		pub struct TestAuthId;
 

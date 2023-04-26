@@ -13,6 +13,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "addchain"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3b2e69442aa5628ea6951fa33e24efe8313f4321a91bd729fc2f75bdfc858570"
+dependencies = [
+ "num-bigint 0.3.3",
+ "num-integer",
+ "num-traits",
+]
+
+[[package]]
 name = "addr2line"
 version = "0.17.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -398,7 +409,7 @@ dependencies = [
  "log",
  "parking",
  "polling",
- "rustix 0.37.14",
+ "rustix 0.37.15",
  "slab",
  "socket2",
  "waker-fn",
@@ -1469,7 +1480,7 @@ dependencies = [
  "asn1-rs 0.3.1",
  "displaydoc",
  "nom",
- "num-bigint",
+ "num-bigint 0.4.3",
  "num-traits",
  "rusticata-macros",
 ]
@@ -1483,7 +1494,7 @@ dependencies = [
  "asn1-rs 0.5.2",
  "displaydoc",
  "nom",
- "num-bigint",
+ "num-bigint 0.4.3",
  "num-traits",
  "rusticata-macros",
 ]
@@ -1582,7 +1593,16 @@ version = "4.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f51c5d4ddabd36886dd3e1438cb358cdcb0d7c499cb99cb4ac2e38e18b5cb210"
 dependencies = [
- "dirs-sys",
+ "dirs-sys 0.3.7",
+]
+
+[[package]]
+name = "directories"
+version = "5.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "74be3be809c18e089de43bdc504652bb2bc473fca8756131f8689db8cf079ba9"
+dependencies = [
+ "dirs-sys 0.4.0",
 ]
 
 [[package]]
@@ -1604,6 +1624,17 @@ dependencies = [
  "libc",
  "redox_users",
  "winapi",
+]
+
+[[package]]
+name = "dirs-sys"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "04414300db88f70d74c5ff54e50f9e1d1737d9a5b90f53fcf2e95ca2a9ab554b"
+dependencies = [
+ "libc",
+ "redox_users",
+ "windows-sys 0.45.0",
 ]
 
 [[package]]
@@ -1738,7 +1769,7 @@ dependencies = [
  "crypto-bigint",
  "der",
  "digest 0.10.6",
- "ff",
+ "ff 0.12.1",
  "generic-array 0.14.7",
  "group",
  "hkdf",
@@ -1879,6 +1910,35 @@ checksum = "d013fc25338cc558c5c2cfbad646908fb23591e2404481826742b651c9af7160"
 dependencies = [
  "rand_core 0.6.4",
  "subtle",
+]
+
+[[package]]
+name = "ff"
+version = "0.13.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ded41244b729663b1e574f1b4fb731469f69f79c17667b5d776b16cda0479449"
+dependencies = [
+ "bitvec",
+ "byteorder",
+ "ff_derive",
+ "rand_core 0.6.4",
+ "subtle",
+]
+
+[[package]]
+name = "ff_derive"
+version = "0.13.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e9f54704be45ed286151c5e11531316eaef5b8f5af7d597b806fdb8af108d84a"
+dependencies = [
+ "addchain",
+ "cfg-if",
+ "num-bigint 0.3.3",
+ "num-integer",
+ "num-traits",
+ "proc-macro2",
+ "quote",
+ "syn 1.0.109",
 ]
 
 [[package]]
@@ -2512,7 +2572,7 @@ version = "0.12.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5dfbfb3a6cfbd390d5c9564ab283a0349b9b9fcd46a706c1eb10e0db70bfbac7"
 dependencies = [
- "ff",
+ "ff 0.12.1",
  "rand_core 0.6.4",
  "subtle",
 ]
@@ -2979,7 +3039,7 @@ checksum = "adcf93614601c8129ddf72e2d5633df827ba6551541c6d8c59520a371475be1f"
 dependencies = [
  "hermit-abi 0.3.1",
  "io-lifetimes 1.0.10",
- "rustix 0.37.14",
+ "rustix 0.37.15",
  "windows-sys 0.48.0",
 ]
 
@@ -3929,7 +3989,7 @@ version = "0.6.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ffc89ccdc6e10d6907450f753537ebc5c5d3460d2e4e62ea74bd571db62c0f9e"
 dependencies = [
- "rustix 0.37.14",
+ "rustix 0.37.15",
 ]
 
 [[package]]
@@ -4371,6 +4431,17 @@ checksum = "61807f77802ff30975e01f4f071c8ba10c022052f98b3294119f3e615d13e5be"
 
 [[package]]
 name = "num-bigint"
+version = "0.3.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5f6f7833f2cbf2360a6cfd58cd41a53aa7a90bd4c202f5b1c7dd2ed73c57b2c3"
+dependencies = [
+ "autocfg",
+ "num-integer",
+ "num-traits",
+]
+
+[[package]]
+name = "num-bigint"
 version = "0.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f93ab6289c7b344a8a9f60f88d80aa20032336fe78da341afc91c8a2341fc75f"
@@ -4387,17 +4458,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "02e0d21255c828d6f128a1e41534206671e8c3ea0c62f32291e808dc82cff17d"
 dependencies = [
  "num-traits",
-]
-
-[[package]]
-name = "num-derive"
-version = "0.3.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "876a53fff98e03a936a674b29568b0e605f06b29372c2489ff4de23f1949743d"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn 1.0.109",
 ]
 
 [[package]]
@@ -4427,7 +4487,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0638a1c9d0a3c0914158145bc76cff373a75a627e6ecbfb71cbe6f453a5a19b0"
 dependencies = [
  "autocfg",
- "num-bigint",
+ "num-bigint 0.4.3",
  "num-integer",
  "num-traits",
 ]
@@ -4657,9 +4717,11 @@ dependencies = [
  "frame-support",
  "frame-system",
  "parity-scale-codec",
- "risc0-zkvm",
+ "risc0-zkp",
  "scale-info",
+ "sp-core",
  "sp-io",
+ "sp-runtime",
 ]
 
 [[package]]
@@ -5611,41 +5673,55 @@ dependencies = [
 ]
 
 [[package]]
-name = "risc0-circuit-rv32im"
+name = "risc0-build-kernel"
 version = "0.14.0"
-source = "git+https://github.com/labormedia/risc0.git#7a04a13466c6f049b3b7b5ce1fa1d2ec1ec11b54"
+source = "git+https://github.com/labormedia/risc0.git?branch=zkp-tests#6ad08c352b59b5773d1506b4f65aec1ba3636d04"
 dependencies = [
- "anyhow",
- "log",
- "risc0-core",
- "risc0-zkp",
- "risc0-zkvm-platform",
- "tracing",
+ "cc",
+ "directories 5.0.0",
+ "glob",
+ "hex",
+ "sha2 0.10.6",
+ "tempfile",
 ]
 
 [[package]]
 name = "risc0-core"
 version = "0.14.0"
-source = "git+https://github.com/labormedia/risc0.git#7a04a13466c6f049b3b7b5ce1fa1d2ec1ec11b54"
+source = "git+https://github.com/labormedia/risc0.git?branch=zkp-tests#6ad08c352b59b5773d1506b4f65aec1ba3636d04"
 dependencies = [
  "bytemuck",
  "rand_core 0.6.4",
 ]
 
 [[package]]
+name = "risc0-sys"
+version = "0.14.0"
+source = "git+https://github.com/labormedia/risc0.git?branch=zkp-tests#6ad08c352b59b5773d1506b4f65aec1ba3636d04"
+dependencies = [
+ "cc",
+ "glob",
+ "risc0-build-kernel",
+ "risc0-core",
+]
+
+[[package]]
 name = "risc0-zkp"
 version = "0.14.0"
-source = "git+https://github.com/labormedia/risc0.git#7a04a13466c6f049b3b7b5ce1fa1d2ec1ec11b54"
+source = "git+https://github.com/labormedia/risc0.git?branch=zkp-tests#6ad08c352b59b5773d1506b4f65aec1ba3636d04"
 dependencies = [
  "anyhow",
  "blake2",
  "bytemuck",
  "digest 0.10.6",
+ "ff 0.13.0",
  "hex",
+ "lazy_static",
  "log",
  "paste",
  "rand_core 0.6.4",
  "risc0-core",
+ "risc0-sys",
  "risc0-zkvm-platform",
  "serde",
  "sha2 0.10.6",
@@ -5653,30 +5729,9 @@ dependencies = [
 ]
 
 [[package]]
-name = "risc0-zkvm"
-version = "0.14.0"
-source = "git+https://github.com/labormedia/risc0.git#7a04a13466c6f049b3b7b5ce1fa1d2ec1ec11b54"
-dependencies = [
- "anyhow",
- "bytemuck",
- "cfg-if",
- "getrandom 0.2.9",
- "hex",
- "log",
- "num-derive",
- "num-traits",
- "risc0-circuit-rv32im",
- "risc0-core",
- "risc0-zkp",
- "risc0-zkvm-platform",
- "serde",
- "tracing",
-]
-
-[[package]]
 name = "risc0-zkvm-platform"
 version = "0.14.0"
-source = "git+https://github.com/labormedia/risc0.git#7a04a13466c6f049b3b7b5ce1fa1d2ec1ec11b54"
+source = "git+https://github.com/labormedia/risc0.git?branch=zkp-tests#6ad08c352b59b5773d1506b4f65aec1ba3636d04"
 
 [[package]]
 name = "rocksdb"
@@ -5815,9 +5870,9 @@ dependencies = [
 
 [[package]]
 name = "rustix"
-version = "0.37.14"
+version = "0.37.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d9b864d3c18a5785a05953adeed93e2dca37ed30f18e69bba9f30079d51f363f"
+checksum = "a0661814f891c57c930a610266415528da53c4933e6dea5fb350cbfe048a9ece"
 dependencies = [
  "bitflags",
  "errno 0.3.1",
@@ -6637,7 +6692,7 @@ version = "0.10.0-dev"
 source = "git+https://github.com/paritytech/substrate.git?branch=polkadot-v0.9.40#98f2e3451c9143278ec53c6718940aeabcd3b68a"
 dependencies = [
  "async-trait",
- "directories",
+ "directories 4.0.1",
  "exit-future",
  "futures",
  "futures-timer",
@@ -8213,7 +8268,7 @@ dependencies = [
  "cfg-if",
  "fastrand",
  "redox_syscall 0.3.5",
- "rustix 0.37.14",
+ "rustix 0.37.15",
  "windows-sys 0.45.0",
 ]
 
