@@ -162,3 +162,4 @@ Please follow the [Substrate Docker instructions here](https://github.com/parity
 
 notes:
   - rustup install 1.68.0
+  - gobjc++-mingw-w64 (‘cc1obj’: execvp:)
