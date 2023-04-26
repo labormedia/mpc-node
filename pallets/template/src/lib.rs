@@ -44,18 +44,22 @@ pub mod pallet {
 		// };
 		// app_crypto!(sr25519, KEY_TYPE);
 
-		use risc0_zkp::core::hash::{
-			blake2b::{Blake2b, Blake2bHashFn},
-			poseidon::PoseidonHashFn,
-			sha::{Sha256, Sha256HashFn},
+		use risc0_zkp::
+		{
+			core::hash::{
+				blake2b::{Blake2b, Blake2bHashFn},
+				poseidon::PoseidonHashFn,
+				sha::{Sha256, Sha256HashFn},
+			},
+			prove
 		};
 
 		pub use crate::methods::{METHOD_NAME_ELF, METHOD_NAME_ID};
 
 		// use risc0_zkvm::{
 		// 	serde::{from_slice, to_vec},
-		// 	// Executor, 
-		// 	// ExecutorEnv
+		// 	Executor, 
+		// 	ExecutorEnv
 		// };
 	
 		pub struct TestAuthId;

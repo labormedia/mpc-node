@@ -27,7 +27,7 @@ frame-system = { version = "4.0.0-dev", default-features = false, git = "https:/
 #risc0-circuit-rv32im-sys = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git" }
 #risc0-core           = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git" }
 #risc0-sys            = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git" }
-risc0-zkp            = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git", branch = "zkp-tests"}
+risc0-zkp            = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git", features = [ "minimal" ],  branch = "fix-dependencies" }  # 6ad08c3
 #risc0-zkvm           = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git" }
 #risc0-zkvm-platform  = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git" }
 
@@ -44,7 +44,6 @@ std = [
 	"frame-support/std",
 	"frame-system/std",
 	"scale-info/std",
-	"risc0-zkp/std",
 ]
 runtime-benchmarks = ["frame-benchmarking/runtime-benchmarks"]
 try-runtime = ["frame-support/try-runtime"]
