@@ -5676,7 +5676,7 @@ dependencies = [
 [[package]]
 name = "risc0-build-kernel"
 version = "0.14.0"
-source = "git+https://github.com/labormedia/risc0.git?branch=fix-dependencies#ddf749142590f12b1cddd6edc39f52a23a694833"
+source = "git+https://github.com/labormedia/risc0.git?branch=fix-dependencies#3d77f4afcdd490b2644628b5eabbd280edfb1046"
 dependencies = [
  "cc",
  "directories 5.0.0",
@@ -5689,7 +5689,7 @@ dependencies = [
 [[package]]
 name = "risc0-core"
 version = "0.14.0"
-source = "git+https://github.com/labormedia/risc0.git?branch=fix-dependencies#ddf749142590f12b1cddd6edc39f52a23a694833"
+source = "git+https://github.com/labormedia/risc0.git?branch=fix-dependencies#3d77f4afcdd490b2644628b5eabbd280edfb1046"
 dependencies = [
  "bytemuck",
  "rand_core 0.6.4",
@@ -5698,7 +5698,7 @@ dependencies = [
 [[package]]
 name = "risc0-sys"
 version = "0.14.0"
-source = "git+https://github.com/labormedia/risc0.git?branch=fix-dependencies#ddf749142590f12b1cddd6edc39f52a23a694833"
+source = "git+https://github.com/labormedia/risc0.git?branch=fix-dependencies#3d77f4afcdd490b2644628b5eabbd280edfb1046"
 dependencies = [
  "cc",
  "glob",
@@ -5709,7 +5709,7 @@ dependencies = [
 [[package]]
 name = "risc0-zkp"
 version = "0.14.0"
-source = "git+https://github.com/labormedia/risc0.git?branch=fix-dependencies#ddf749142590f12b1cddd6edc39f52a23a694833"
+source = "git+https://github.com/labormedia/risc0.git?branch=fix-dependencies#3d77f4afcdd490b2644628b5eabbd280edfb1046"
 dependencies = [
  "anyhow",
  "blake2",
@@ -5731,7 +5731,7 @@ dependencies = [
 [[package]]
 name = "risc0-zkvm-platform"
 version = "0.14.0"
-source = "git+https://github.com/labormedia/risc0.git?branch=fix-dependencies#ddf749142590f12b1cddd6edc39f52a23a694833"
+source = "git+https://github.com/labormedia/risc0.git?branch=fix-dependencies#3d77f4afcdd490b2644628b5eabbd280edfb1046"
 
 [[package]]
 name = "rocksdb"

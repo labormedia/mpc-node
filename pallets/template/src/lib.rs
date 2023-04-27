@@ -51,7 +51,7 @@ pub mod pallet {
 				poseidon::PoseidonHashFn,
 				sha::{Sha256, Sha256HashFn},
 			},
-			prove
+			prove::Prover
 		};
 
 		pub use crate::methods::{METHOD_NAME_ELF, METHOD_NAME_ID};
