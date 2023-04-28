@@ -34,7 +34,7 @@ pub mod pallet {
 		// type AuthorityId: AppCrypto<Self::Public, Self::Signature>;
 	}
 
-	pub mod crypto {
+	pub mod riscv {
 		// use super::KEY_TYPE;
 		// use sp_core::sr25519::Signature as Sr25519Signature;
 		// use sp_keyring;
@@ -44,25 +44,45 @@ pub mod pallet {
 		// };
 		// app_crypto!(sr25519, KEY_TYPE);
 
-		use risc0_zkp::
-		{
-			core::hash::{
-				blake2b::{Blake2b, Blake2bHashFn},
-				poseidon::PoseidonHashFn,
-				sha::{Sha256, Sha256HashFn},
-			},
-			prove::Prover
-		};
+		// use risc0_zkp::
+		// {
+		// 	core::hash::{
+		// 		blake2b::{Blake2b, Blake2bHashFn},
+		// 		poseidon::{
+		// 			PoseidonHashFn,
+		// 			PoseidonRng
+		// 		},
+		// 		sha::{Sha256, Sha256HashFn},
+		// 	},
+		// 	prove::Prover,
+		// 	verify::verify
+			
+		// };
+
+		use frame_support::log;
 
 		pub use crate::methods::{METHOD_NAME_ELF, METHOD_NAME_ID};
+
+		// use risc0_zkvm::guest;
 
 		// use risc0_zkvm::{
 		// 	serde::{from_slice, to_vec},
 		// 	Executor, 
 		// 	ExecutorEnv
 		// };
+
+		// use riscv::asm::wfi;
+		// use riscv::register::{mie, mip};
+		// use riscv_rt::entry;
 	
-		pub struct TestAuthId;
+		// pub struct TestAuthId;
+
+		// #[entry]
+		// fn main() -> ! {
+		// 	// do something here
+		// 	log::info!("Hello from main entry.");
+		// 	loop {}
+		// }
 
 	}
 
