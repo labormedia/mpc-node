@@ -35,6 +35,14 @@ pub mod pallet {
 	}
 
 	pub mod riscv {
+		// use waldo_core;
+		// use risc0_zkvm;
+		use risc0_zkvm::{
+		// 	declare_syscall,
+			sha::{Digest, Impl, Sha256},
+		};
+		// use risc0_circuit_rv32im;
+		// use risc0_zkvm;
 		// use super::KEY_TYPE;
 		// use sp_core::sr25519::Signature as Sr25519Signature;
 		// use sp_keyring;
@@ -43,7 +51,7 @@ pub mod pallet {
 		// 	traits::Verify, MultiSignature, MultiSigner
 		// };
 		// app_crypto!(sr25519, KEY_TYPE);
-
+		// use risc0_zkp;
 		// use risc0_zkp::
 		// {
 		// 	core::hash::{
@@ -57,6 +65,11 @@ pub mod pallet {
 		// 	prove::Prover,
 		// 	verify::verify
 			
+		// };
+
+		// use waldo::{
+		// 	verify_image,
+		// 	Args
 		// };
 
 		use frame_support::log;
