@@ -29,9 +29,10 @@ frame-system = { version = "4.0.0-dev", default-features = false, git = "https:/
 #risc0-sys            = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git" }
 #risc0-zkp            = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git", features = [ "minimal" ],  branch = "fix-dependencies" }  # 6ad08c3
 #risc0-zkp            = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git", features = [ "minimal" ],  branch = "empty-waldo-core-lib.rs"}
-risc0-zkvm           = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git", features = [ ],  branch = "empty-waldo-core-lib.rs" }
+#risc0-zkvm           = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git", features = [ ],  branch = "empty-waldo-core-lib.rs" }
 #risc0-zkvm-platform  = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git" }
-#waldo-core			  = { version = "0.1.0", default-features = false, git = "https://github.com/labormedia/risc0.git", branch = "empty-waldo-core-lib.rs", features = [ "minimal" ] }
+#image = { version = "0.24", git = "https://github.com/labormedia/image.git", branch = "empty",default-features = false }
+waldo-core			  = { version = "0.1.0", default-features = false, git = "https://github.com/labormedia/risc0.git", branch = "empty-waldo-core-lib.rs", features = [ ] }
 
 
 [dev-dependencies]
@@ -40,7 +41,8 @@ sp-io = { version = "7.0.0", git = "https://github.com/paritytech/substrate.git"
 sp-runtime = { version = "7.0.0", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.40" }
 
 [features]
-default = ["std", "minimal"]
+default = ["std", "minimal", "test"]
+test = ["minimal"]
 minimal = []
 std = [
 	"codec/std",

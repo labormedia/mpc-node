@@ -1,5 +1,7 @@
 #![cfg_attr(not(feature = "std"), no_std)]
 
+extern crate alloc;
+
 /// Edit this file to define custom logic or remove it if it is not needed.
 /// Learn more about FRAME and the core library of Substrate FRAME pallets:
 /// <https://docs.substrate.io/reference/frame-pallets/>
@@ -35,12 +37,13 @@ pub mod pallet {
 	}
 
 	pub mod riscv {
-		// use waldo_core;
+		pub use waldo_core::merkle::MerkleTree;
+		// use image;
 		// use risc0_zkvm;
-		use risc0_zkvm::{
+		// use risc0_zkvm::{
 		// 	declare_syscall,
-			sha::{Digest, Impl, Sha256},
-		};
+		// 	sha::{Digest, Impl, Sha256},
+		// };
 		// use risc0_circuit_rv32im;
 		// use risc0_zkvm;
 		// use super::KEY_TYPE;
@@ -139,6 +142,9 @@ pub mod pallet {
 		fn offchain_worker(block_number: T::BlockNumber) {
 			log::info!("Hello from pallet-ocw.");
 			// The entry point of your code called by offchain worker
+			let item_count: usize = 12_usize;
+			let items: alloc::vec::Vec<u32> = (0..item_count).map(|_| 0_u32).collect();
+			let m1 = riscv::MerkleTree::<u32>::new(items);
 		}
 		// ...
 	}
