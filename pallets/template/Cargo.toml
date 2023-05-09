@@ -31,9 +31,7 @@ frame-system = { version = "4.0.0-dev", default-features = false, git = "https:/
 #risc0-zkp            = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git", features = [ "minimal" ],  branch = "empty-waldo-core-lib.rs"}
 #risc0-zkvm           = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git", features = [ ],  branch = "empty-waldo-core-lib.rs" }
 #risc0-zkvm-platform  = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git" }
-#image = { version = "0.24", git = "https://github.com/labormedia/image.git", branch = "empty",default-features = false }
-waldo-core			  = { version = "0.1.0", default-features = false, git = "https://github.com/labormedia/risc0.git", branch = "empty-waldo-core-lib.rs", features = [ ] }
-
+method_name			  = { version = "0.1.0", default-features = false, git = "https://github.com/labormedia/risc_0_template", branch = "master", features = [] }
 
 [dev-dependencies]
 sp-core = { version = "7.0.0", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.40" }

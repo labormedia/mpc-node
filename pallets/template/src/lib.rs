@@ -36,69 +36,8 @@ pub mod pallet {
 		// type AuthorityId: AppCrypto<Self::Public, Self::Signature>;
 	}
 
-	pub mod riscv {
-		pub use waldo_core::merkle::MerkleTree;
-		// use image;
-		// use risc0_zkvm;
-		// use risc0_zkvm::{
-		// 	declare_syscall,
-		// 	sha::{Digest, Impl, Sha256},
-		// };
-		// use risc0_circuit_rv32im;
-		// use risc0_zkvm;
-		// use super::KEY_TYPE;
-		// use sp_core::sr25519::Signature as Sr25519Signature;
-		// use sp_keyring;
-		// use sp_runtime::{
-		// 	app_crypto::{app_crypto, sr25519},
-		// 	traits::Verify, MultiSignature, MultiSigner
-		// };
-		// app_crypto!(sr25519, KEY_TYPE);
-		// use risc0_zkp;
-		// use risc0_zkp::
-		// {
-		// 	core::hash::{
-		// 		blake2b::{Blake2b, Blake2bHashFn},
-		// 		poseidon::{
-		// 			PoseidonHashFn,
-		// 			PoseidonRng
-		// 		},
-		// 		sha::{Sha256, Sha256HashFn},
-		// 	},
-		// 	prove::Prover,
-		// 	verify::verify
-			
-		// };
-
-		// use waldo::{
-		// 	verify_image,
-		// 	Args
-		// };
-
-		use frame_support::log;
-
-		pub use crate::methods::{METHOD_NAME_ELF, METHOD_NAME_ID};
-
-		// use risc0_zkvm::guest;
-
-		// use risc0_zkvm::{
-		// 	serde::{from_slice, to_vec},
-		// 	Executor, 
-		// 	ExecutorEnv
-		// };
-
-		// use riscv::asm::wfi;
-		// use riscv::register::{mie, mip};
-		// use riscv_rt::entry;
-	
-		// pub struct TestAuthId;
-
-		// #[entry]
-		// fn main() -> ! {
-		// 	// do something here
-		// 	log::info!("Hello from main entry.");
-		// 	loop {}
-		// }
+	pub mod risc_0 {
+		
 
 	}
 
@@ -142,9 +81,7 @@ pub mod pallet {
 		fn offchain_worker(block_number: T::BlockNumber) {
 			log::info!("Hello from pallet-ocw.");
 			// The entry point of your code called by offchain worker
-			let item_count: usize = 12_usize;
-			let items: alloc::vec::Vec<u32> = (0..item_count).map(|_| 0_u32).collect();
-			let m1 = riscv::MerkleTree::<u32>::new(items);
+
 		}
 		// ...
 	}
