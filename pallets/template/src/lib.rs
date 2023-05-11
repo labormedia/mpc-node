@@ -36,9 +36,25 @@ pub mod pallet {
 		// type AuthorityId: AppCrypto<Self::Public, Self::Signature>;
 	}
 
+	#[cfg(risc_v)]
 	pub mod risc_0 {
-		
-
+		use risc0_zkp::{
+			core::{
+				digest::{DIGEST_BYTES, DIGEST_WORDS},
+				hash::sha::{BLOCK_BYTES, BLOCK_WORDS},
+				log2_ceil,
+			},
+			ZK_CYCLES,
+		};
+		use risc0_zkvm_platform::{
+			fileno,
+			memory::MEM_SIZE,
+			syscall::{
+				ecall, halt,
+				reg_abi::{REG_A0, REG_A1, REG_A2, REG_A3, REG_A4, REG_T0},
+			},
+			PAGE_SIZE, WORD_SIZE,
+		};
 	}
 
 	// The pallet's runtime storage items.
