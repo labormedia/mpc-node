@@ -55,6 +55,7 @@ pub mod pallet {
 			},
 			PAGE_SIZE, WORD_SIZE,
 		};
+		use rrs_lib::{instruction_executor::InstructionExecutor, HartState};
 	}
 
 	// The pallet's runtime storage items.
