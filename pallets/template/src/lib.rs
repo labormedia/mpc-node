@@ -18,6 +18,44 @@ mod benchmarking;
 
 mod methods;
 
+#[cfg(feature="risc_v")]
+pub mod risc_0 {
+	#[macro_use]
+	use alloc::vec;
+	use risc0_zkp::{
+		core::{
+			digest::{DIGEST_BYTES, DIGEST_WORDS},
+			hash::sha::{BLOCK_BYTES, BLOCK_WORDS},
+			log2_ceil,
+		},
+		ZK_CYCLES,
+	};
+	use risc0_zkvm_platform::{
+		fileno,
+		memory::MEM_SIZE,
+		syscall::{
+			ecall, halt,
+			reg_abi::{REG_A0, REG_A1, REG_A2, REG_A3, REG_A4, REG_T0},
+		},
+		PAGE_SIZE, WORD_SIZE,
+	};
+	pub use rrs_lib::{
+		memories::VecMemory,
+		instruction_executor::InstructionExecutor, 
+		HartState
+	};
+
+	pub fn test() {
+		let mut hart = HartState::new();
+		let mut mem = VecMemory::new(vec![0x1234b137, 0xf387e1b7, 0x003100b3]);
+		hart.pc = 0;
+		let mut executor = InstructionExecutor {
+			hart_state: &mut hart,
+			mem: &mut mem,
+		};
+	}
+}
+
 #[frame_support::pallet]
 pub mod pallet {
 	use frame_support::pallet_prelude::*;
@@ -34,28 +72,6 @@ pub mod pallet {
 		/// Because this pallet emits events, it depends on the runtime's definition of an event.
 		type RuntimeEvent: From<Event<Self>> + IsType<<Self as frame_system::Config>::RuntimeEvent>;
 		// type AuthorityId: AppCrypto<Self::Public, Self::Signature>;
-	}
-
-	#[cfg(risc_v)]
-	pub mod risc_0 {
-		use risc0_zkp::{
-			core::{
-				digest::{DIGEST_BYTES, DIGEST_WORDS},
-				hash::sha::{BLOCK_BYTES, BLOCK_WORDS},
-				log2_ceil,
-			},
-			ZK_CYCLES,
-		};
-		use risc0_zkvm_platform::{
-			fileno,
-			memory::MEM_SIZE,
-			syscall::{
-				ecall, halt,
-				reg_abi::{REG_A0, REG_A1, REG_A2, REG_A3, REG_A4, REG_T0},
-			},
-			PAGE_SIZE, WORD_SIZE,
-		};
-		use rrs_lib::{instruction_executor::InstructionExecutor, HartState};
 	}
 
 	// The pallet's runtime storage items.
@@ -98,6 +114,8 @@ pub mod pallet {
 		fn offchain_worker(block_number: T::BlockNumber) {
 			log::info!("Hello from pallet-ocw.");
 			// The entry point of your code called by offchain worker
+			#[cfg(feature="risc_v")]
+			super::risc_0::test();
 
 		}
 		// ...

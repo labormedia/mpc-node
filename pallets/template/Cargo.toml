@@ -32,7 +32,7 @@ risc0-zkp            = { version = "0.14.0", default-features = false, git = "ht
 #risc0-zkvm           = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git", features = [ "binfmt", "test" ],  branch = "empty-waldo-core-lib.rs" }
 risc0-zkvm-platform  = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git" }
 #methods				  = { version = "0.1.0", default-features = false, git = "https://github.com/labormedia/risc_0_template", branch = "master", features = [#] }
-rrs-lib = { version = "0.1", optional = true }
+rrs-lib = { version = "0.1", git="https://github.com/labormedia/rrs.git", optional = true, default-features=false}
 
 [dev-dependencies]
 sp-core = { version = "7.0.0", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.40" }
@@ -40,7 +40,7 @@ sp-io = { version = "7.0.0", git = "https://github.com/paritytech/substrate.git"
 sp-runtime = { version = "7.0.0", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.40" }
 
 [features]
-default = ["std", "minimal", "test"]
+default = ["std", "minimal", "test", "risc_v"]
 risc_v = [ "dep:rrs-lib" ]
 test = ["minimal"]
 minimal = []
