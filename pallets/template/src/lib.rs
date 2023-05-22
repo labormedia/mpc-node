@@ -21,7 +21,10 @@ mod methods;
 #[cfg(feature="risc_v")]
 pub mod risc_0 {
 	#[macro_use]
-	use alloc::vec;
+	use alloc::{
+		vec,
+		string::String
+	};
 	use risc0_zkp::{
 		core::{
 			digest::{DIGEST_BYTES, DIGEST_WORDS},
@@ -42,18 +45,27 @@ pub mod risc_0 {
 	pub use rrs_lib::{
 		memories::VecMemory,
 		instruction_executor::InstructionExecutor, 
-		HartState
+		HartState,
+		MemAccessSize, 
+		Memory,
+		instruction_string_outputter::InstructionStringOutputter,
+		InstructionProcessor,
 	};
 
-	pub fn test() {
-		let mut hart = HartState::new();
-		let mut mem = VecMemory::new(vec![0x1234b137, 0xf387e1b7, 0x003100b3]);
+	pub fn instruction_executor<'a>(hart: &'a mut HartState, mem: &'a mut VecMemory) -> InstructionExecutor<'a, VecMemory> {
 		hart.pc = 0;
-		let mut executor = InstructionExecutor {
-			hart_state: &mut hart,
-			mem: &mut mem,
-		};
+		InstructionExecutor {
+			hart_state: hart,
+			mem: mem,
+		}
 	}
+
+	pub fn output_disass<M: Memory>(executor: &mut InstructionExecutor<M>) -> String {
+		let mut outputter = InstructionStringOutputter { insn_pc: executor.hart_state.pc };
+		let insn_bits = executor.mem.read_mem(executor.hart_state.pc, MemAccessSize::Word).unwrap();
+		rrs_lib::process_instruction(&mut outputter, insn_bits).unwrap()
+	}
+
 }
 
 #[frame_support::pallet]
@@ -114,9 +126,20 @@ pub mod pallet {
 		fn offchain_worker(block_number: T::BlockNumber) {
 			log::info!("Hello from pallet-ocw.");
 			// The entry point of your code called by offchain worker
+			#[macro_use]
+			use alloc::{
+				vec,
+				string::String
+			};
 			#[cfg(feature="risc_v")]
-			super::risc_0::test();
+			{
+				let mut hart = super::risc_0::HartState::new();
+				let mut mem = super::risc_0::VecMemory::new(vec![0x1234b137, 0xf387e1b7, 0x003100b3]);
+				let mut executor = super::risc_0::instruction_executor(&mut hart, &mut mem);
+				log::info!("{}",super::risc_0::output_disass(&mut executor));
+			}
 
+			
 		}
 		// ...
 	}
