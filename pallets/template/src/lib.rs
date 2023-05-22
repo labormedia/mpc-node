@@ -44,12 +44,16 @@ pub mod risc_0 {
 	};
 	pub use rrs_lib::{
 		memories::VecMemory,
-		instruction_executor::InstructionExecutor, 
+		instruction_executor::{
+			InstructionExecutor,
+			InstructionTrap
+		}, 
 		HartState,
 		MemAccessSize, 
 		Memory,
 		instruction_string_outputter::InstructionStringOutputter,
 		InstructionProcessor,
+		csrs::{CSRAddr, ExceptionCause, MIx, PrivLevel},
 	};
 
 	pub fn instruction_executor<'a>(hart: &'a mut HartState, mem: &'a mut VecMemory) -> InstructionExecutor<'a, VecMemory> {
@@ -136,7 +140,28 @@ pub mod pallet {
 				let mut hart = super::risc_0::HartState::new();
 				let mut mem = super::risc_0::VecMemory::new(vec![0x1234b137, 0xf387e1b7, 0x003100b3]);
 				let mut executor = super::risc_0::instruction_executor(&mut hart, &mut mem);
+
+
+				// Test assert : Execute first instruction
 				log::info!("{}",super::risc_0::output_disass(&mut executor));
+				assert_eq!(executor.step(), Ok(()));
+				assert_eq!(executor.hart_state.registers[2], 0x1234b000);
+
+				// Test assert : Execute first instruction
+				super::risc_0::output_disass(&mut executor);
+				assert_eq!(executor.step(), Ok(()));
+				assert_eq!(executor.hart_state.registers[3], 0xf387e000);
+
+				// Test assert : Execute first instruction
+				super::risc_0::output_disass(&mut executor);
+				assert_eq!(executor.step(), Ok(()));
+				assert_eq!(executor.hart_state.registers[1], 0x05bc9000);
+
+				// Memory only contains three instructions so next step will produce a fetch error
+				assert_eq!(executor.step(), Err(super::risc_0::InstructionTrap::Exception(
+					super::risc_0::ExceptionCause::InstructionAccessFault,
+					0,
+				)));
 			}
 
 			
