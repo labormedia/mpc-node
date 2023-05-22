@@ -42,6 +42,7 @@ sp-runtime = { version = "7.0.0", git = "https://github.com/paritytech/substrate
 [features]
 default = ["std", "minimal", "test", "risc_v"]
 risc_v = [ "dep:rrs-lib" ]
+test_assertions = []
 test = ["minimal"]
 minimal = []
 std = [
