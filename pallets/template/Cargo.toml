@@ -29,9 +29,9 @@ frame-system = { version = "4.0.0-dev", default-features = false, git = "https:/
 #risc0-sys            = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git" }
 #risc0-zkp            = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git", features = [ "minimal" ],  branch = "fix-dependencies" }  # 6ad08c3
 risc0-zkp            = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git" }
-#risc0-zkvm           = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git", features = [ "binfmt", "test" ],  branch = "empty-waldo-core-lib.rs" }
+risc0-zkvm           = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git", features = [ "binfmt" ],  branch = "risc_0_template" }
 risc0-zkvm-platform  = { version = "0.14.0", default-features = false, git = "https://github.com/labormedia/risc0.git" }
-#methods				  = { version = "0.1.0", default-features = false, git = "https://github.com/labormedia/risc_0_template", branch = "master", features = [#] }
+#methods				  = { version = "0.1.0", default-features = false, git = "https://github.com/labormedia/risc_0_template", branch = "master", features = [] }
 rrs-lib = { version = "0.1", git="https://github.com/labormedia/rrs.git", optional = true, default-features=false}
 
 [dev-dependencies]

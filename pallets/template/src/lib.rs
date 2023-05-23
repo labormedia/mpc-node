@@ -55,6 +55,10 @@ pub mod risc_0 {
 		InstructionProcessor,
 		csrs::{CSRAddr, ExceptionCause, MIx, PrivLevel},
 	};
+	use risc0_zkvm::binfmt::image::{
+		PageTableInfo,
+		MemoryImage
+	};
 
 	pub fn instruction_executor<'a>(hart: &'a mut HartState, mem: &'a mut VecMemory) -> InstructionExecutor<'a, VecMemory> {
 		hart.pc = 0;

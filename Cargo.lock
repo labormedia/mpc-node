@@ -501,9 +501,9 @@ checksum = "9e1b586273c5702936fe7b7d6896644d8be71e6314cfe09d3167c95f712589e8"
 
 [[package]]
 name = "base64"
-version = "0.21.0"
+version = "0.21.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a4a4ddaa51a5bc52a6948f74c06d20aaaddb71924eab79b8c97a8c556e942d6a"
+checksum = "3f1e31e207a6b8fb791a38ea3105e6cb541f55e4d029902d3039a4ad07cc4105"
 
 [[package]]
 name = "base64ct"
@@ -705,9 +705,9 @@ dependencies = [
 
 [[package]]
 name = "bumpalo"
-version = "3.12.2"
+version = "3.13.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3c6ed94e98ecff0c12dd1b04c15ec0d7d9458ca8fe806cea6f12954efe74c63b"
+checksum = "a3e2c3daef883ecc1b5d58c15adae93470a91d425f3532ba1695849656af3fc1"
 
 [[package]]
 name = "byte-slice-cast"
@@ -1727,6 +1727,12 @@ name = "either"
 version = "1.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7fcaabb2fef8c910e7f4c7ce9f67a1283a1715879a7c230ca9d6d1ae31f16d91"
+
+[[package]]
+name = "elf"
+version = "0.7.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e2b183d6ce6ca4cf30e3db37abf5b52568b5f9015c97d9fbdd7026aa5dcdd758"
 
 [[package]]
 name = "elliptic-curve"
@@ -4374,6 +4380,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "num-derive"
+version = "0.3.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "876a53fff98e03a936a674b29568b0e605f06b29372c2489ff4de23f1949743d"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 1.0.109",
+]
+
+[[package]]
 name = "num-format"
 version = "0.4.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4650,8 +4667,9 @@ dependencies = [
  "frame-support",
  "frame-system",
  "parity-scale-codec",
- "risc0-zkp",
- "risc0-zkvm-platform",
+ "risc0-zkp 0.14.0 (git+https://github.com/labormedia/risc0.git)",
+ "risc0-zkvm",
+ "risc0-zkvm-platform 0.14.0 (git+https://github.com/labormedia/risc0.git)",
  "rrs-lib",
  "scale-info",
  "sp-core",
@@ -5529,13 +5547,13 @@ dependencies = [
 
 [[package]]
 name = "regex"
-version = "1.8.1"
+version = "1.8.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "af83e617f331cc6ae2da5443c602dfa5af81e517212d9d611a5b3ba1777b5370"
+checksum = "d1a59b5d8e97dee33696bf13c5ba8ab85341c002922fba050069326b9c498974"
 dependencies = [
  "aho-corasick 1.0.1",
  "memchr",
- "regex-syntax 0.7.1",
+ "regex-syntax 0.7.2",
 ]
 
 [[package]]
@@ -5555,9 +5573,9 @@ checksum = "f162c6dd7b008981e4d40210aca20b4bd0f9b60ca9271061b07f78537722f2e1"
 
 [[package]]
 name = "regex-syntax"
-version = "0.7.1"
+version = "0.7.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a5996294f19bd3aae0453a862ad728f60e6600695733dd5df01da90c54363a3c"
+checksum = "436b050e76ed2903236f032a59761c1eb99e1b0aead2c257922771dab1fc8c78"
 
 [[package]]
 name = "region"
@@ -5608,12 +5626,54 @@ dependencies = [
 ]
 
 [[package]]
+name = "risc0-circuit-rv32im"
+version = "0.14.0"
+source = "git+https://github.com/labormedia/risc0.git?branch=risc_0_template#43e80a1a5fc76b158600dae98ab191172f363728"
+dependencies = [
+ "anyhow",
+ "log",
+ "risc0-core 0.14.0 (git+https://github.com/labormedia/risc0.git?branch=risc_0_template)",
+ "risc0-zkp 0.14.0 (git+https://github.com/labormedia/risc0.git?branch=risc_0_template)",
+ "risc0-zkvm-platform 0.14.0 (git+https://github.com/labormedia/risc0.git?branch=risc_0_template)",
+ "tracing",
+]
+
+[[package]]
+name = "risc0-core"
+version = "0.14.0"
+source = "git+https://github.com/labormedia/risc0.git?branch=risc_0_template#43e80a1a5fc76b158600dae98ab191172f363728"
+dependencies = [
+ "bytemuck",
+ "rand_core 0.6.4",
+]
+
+[[package]]
 name = "risc0-core"
 version = "0.14.0"
 source = "git+https://github.com/labormedia/risc0.git#84528d31c0efad566e585aa04a83d6692b32bd16"
 dependencies = [
  "bytemuck",
  "rand_core 0.6.4",
+]
+
+[[package]]
+name = "risc0-zkp"
+version = "0.14.0"
+source = "git+https://github.com/labormedia/risc0.git?branch=risc_0_template#43e80a1a5fc76b158600dae98ab191172f363728"
+dependencies = [
+ "anyhow",
+ "blake2",
+ "bytemuck",
+ "digest 0.10.7",
+ "hex",
+ "log",
+ "paste",
+ "rand_core 0.6.4",
+ "risc0-core 0.14.0 (git+https://github.com/labormedia/risc0.git?branch=risc_0_template)",
+ "risc0-zkvm-platform 0.14.0 (git+https://github.com/labormedia/risc0.git?branch=risc_0_template)",
+ "serde",
+ "sha2 0.10.6",
+ "tracing",
 ]
 
 [[package]]
@@ -5629,12 +5689,41 @@ dependencies = [
  "log",
  "paste",
  "rand_core 0.6.4",
- "risc0-core",
- "risc0-zkvm-platform",
+ "risc0-core 0.14.0 (git+https://github.com/labormedia/risc0.git)",
+ "risc0-zkvm-platform 0.14.0 (git+https://github.com/labormedia/risc0.git)",
  "serde",
  "sha2 0.10.6",
  "tracing",
 ]
+
+[[package]]
+name = "risc0-zkvm"
+version = "0.14.0"
+source = "git+https://github.com/labormedia/risc0.git?branch=risc_0_template#43e80a1a5fc76b158600dae98ab191172f363728"
+dependencies = [
+ "anyhow",
+ "bytemuck",
+ "cfg-if",
+ "elf",
+ "getrandom 0.2.9",
+ "hex",
+ "libm 0.2.7",
+ "log",
+ "num-derive",
+ "num-traits",
+ "risc0-circuit-rv32im",
+ "risc0-core 0.14.0 (git+https://github.com/labormedia/risc0.git?branch=risc_0_template)",
+ "risc0-zkp 0.14.0 (git+https://github.com/labormedia/risc0.git?branch=risc_0_template)",
+ "risc0-zkvm-platform 0.14.0 (git+https://github.com/labormedia/risc0.git?branch=risc_0_template)",
+ "rrs-lib",
+ "serde",
+ "tracing",
+]
+
+[[package]]
+name = "risc0-zkvm-platform"
+version = "0.14.0"
+source = "git+https://github.com/labormedia/risc0.git?branch=risc_0_template#43e80a1a5fc76b158600dae98ab191172f363728"
 
 [[package]]
 name = "risc0-zkvm-platform"
@@ -5665,7 +5754,7 @@ dependencies = [
 [[package]]
 name = "rrs-lib"
 version = "0.1.0"
-source = "git+https://github.com/labormedia/rrs.git#4333746cf1fe6ba24124b78e8784acabfc732efd"
+source = "git+https://github.com/labormedia/rrs.git#c1cbf43c9bbf5ed9c38ee5208738ff908678e7b2"
 dependencies = [
  "downcast-rs",
  "num_enum",
@@ -5829,7 +5918,7 @@ version = "1.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d194b56d58803a43635bdc398cd17e383d6f71f9182b9a192c127ca42494a59b"
 dependencies = [
- "base64 0.21.0",
+ "base64 0.21.1",
 ]
 
 [[package]]
