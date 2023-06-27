@@ -186,9 +186,9 @@ pub mod pallet {
 
 					assert_eq!(1, 0); // should panic.
 				}
-				let mut rng = super::risc_0::pick_rng();
 
 			}
+			let mut rng = super::risc_0::pick_rng();
 
 			
 		}
