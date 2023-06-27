@@ -25,14 +25,14 @@ pub mod risc_0 {
 		vec,
 		string::String
 	};
-	use risc0_zkp::{
-		core::{
-			digest::{DIGEST_BYTES, DIGEST_WORDS},
-			hash::sha::{BLOCK_BYTES, BLOCK_WORDS},
-			log2_ceil,
-		},
-		ZK_CYCLES,
-	};
+	// use risc0_zkp::{
+	// 	core::{
+	// 		digest::{DIGEST_BYTES, DIGEST_WORDS},
+	// 		hash::sha::{BLOCK_BYTES, BLOCK_WORDS},
+	// 		log2_ceil,
+	// 	},
+	// 	ZK_CYCLES,
+	// };
 	use risc0_zkvm_platform::{
 		fileno,
 		memory::MEM_SIZE,
@@ -55,10 +55,17 @@ pub mod risc_0 {
 		InstructionProcessor,
 		csrs::{CSRAddr, ExceptionCause, MIx, PrivLevel},
 	};
-	use risc0_zkvm::binfmt::image::{
-		PageTableInfo,
-		MemoryImage
+	use risc0_zkvm::{
+		// prove::loader,
+		binfmt::image::{
+			PageTableInfo,
+			MemoryImage
+		}
 	};
+	// use ff::*;
+	pub use rand_core::RngCore;
+	pub use rand_chacha;
+	use rand_core::SeedableRng;
 
 	pub fn instruction_executor<'a>(hart: &'a mut HartState, mem: &'a mut VecMemory) -> InstructionExecutor<'a, VecMemory> {
 		hart.pc = 0;
@@ -72,6 +79,14 @@ pub mod risc_0 {
 		let mut outputter = InstructionStringOutputter { insn_pc: executor.hart_state.pc };
 		let insn_bits = executor.mem.read_mem(executor.hart_state.pc, MemAccessSize::Word).unwrap();
 		rrs_lib::process_instruction(&mut outputter, insn_bits).unwrap()
+	}
+
+	pub fn pick_rng() -> impl RngCore {
+		// test if we can random seed.
+		let seed = frame_support::sp_io::offchain::random_seed();
+		// Random generator
+		let rng = super::risc_0::rand_chacha::ChaCha12Rng::from_seed(seed);
+		rng
 	}
 
 }
@@ -141,6 +156,7 @@ pub mod pallet {
 			};
 			#[cfg(feature="risc_v")]
 			{
+
 				let mut hart = super::risc_0::HartState::new();
 				let mut mem = super::risc_0::VecMemory::new(vec![0x1234b137, 0xf387e1b7, 0x003100b3]);
 				let mut executor = super::risc_0::instruction_executor(&mut hart, &mut mem);
@@ -170,6 +186,7 @@ pub mod pallet {
 
 					assert_eq!(1, 0); // should panic.
 				}
+				let rng = super::risc_0::pick_rng();
 
 			}
 
